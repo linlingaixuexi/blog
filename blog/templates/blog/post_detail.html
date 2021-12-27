@@ -16,7 +16,18 @@
         {% endif %}
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
-        <img src="{{post.thumb.url}}" width="480" height="640" onerror="this.style.visibility = 'hidden'"/>
+        <ol class="carousel-indicators">
+        {% for p in photos %}
+          <li data-target="#carousel-example-1z" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+        {% endfor %}
+        </ol>
+        <div class="carousel-inner" role="listbox">
+        {% for p in photos %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+          <img class="d-block w-100" src="{{p.images.url}}"
+            alt="First slide">
+        </div>
+        {% endfor %}
         <div class="col-md-8 card mb-4  mt-3 ">
       <div class="card-body">
         <!-- comments -->

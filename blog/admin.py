@@ -1,8 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment
-
-admin.site.register(Post)
-admin.site.register(Comment)
+from .models import Post, Comment, PostImage
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('author', 'text', 'post', 'created_on', 'approved_comment')
@@ -12,3 +9,12 @@ class CommentAdmin(admin.ModelAdmin):
 
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
+
+class PostImageAdmin(admin.ModelAdmin):
+    model=PostImage
+    class Meta:
+        model=Post
+        
+admin.site.register(Post)
+admin.site.register(Comment)
+admin.site.register(PostImage)
